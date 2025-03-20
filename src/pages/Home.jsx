@@ -29,6 +29,48 @@ export const Home = () => {
       }
     }
     getCharacter();
+
+    async function getPlanets() {
+      try {
+        const response = await fetch(`https://www.swapi.tech/api/planets/`);
+        if (!response.ok) {
+          throw new Error("error mal planetas, solucionar");
+        }
+        const data = await response.json();
+        console.log("esta es la data", data);
+
+        dispatch({
+          type: "GET_PLANETS",
+          payload: data.results.map((planet) => ({
+            name: planet.name, // Accedemos directamente a 'name' de cada objeto en results
+          })),
+        });
+      } catch (error) {
+        console.log("errorazo", error);
+      }
+    }
+    getPlanets();
+
+    async function getVehicle() {
+      try {
+        const response = await fetch(`https://www.swapi.tech/api/vehicles/`);
+        if (!response.ok) {
+          throw new Error("error mal planetas, solucionar");
+        }
+        const data = await response.json();
+        console.log("esta es la data", data);
+
+        dispatch({
+          type: "GET_VEHICLES",
+          payload: data.results.map((vehicles) => ({
+            name: vehicles.name, // Accedemos directamente a 'name' de cada objeto en results
+          })),
+        });
+      } catch (error) {
+        console.log("errorazo", error);
+      }
+    }
+    getVehicle();
   }, [dispatch]);
 
   return (
@@ -48,6 +90,62 @@ export const Home = () => {
                 <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
                 <div className="card-body">
                   <h5 className="card-title">{char.name}</h5>
+                  <p className="card-text">Gender: N/A</p>
+                  <p className="card-text">Hair color: N/A</p>
+                  <p className="card-text">Eyes color: N/A</p>
+                  <a href="#" className="btn btn-primary ms-0">
+                    Go somewhere
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="text-center mt-5">
+        <h1 className="d-flex text-align-start m-5">Planets</h1>
+
+        {/* Contenedor con scroll horizontal */}
+        <div className="d-flex overflow-auto pb-3">
+          {store.planets.map((planet, index) => {
+            return (
+              <div
+                key={index}
+                className="card flex-shrink-0 m-3"
+                style={{ width: "17rem" }}
+              >
+                <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
+                <div className="card-body">
+                  <h5 className="card-title">{planet.name}</h5>
+                  <p className="card-text">Gender: N/A</p>
+                  <p className="card-text">Hair color: N/A</p>
+                  <p className="card-text">Eyes color: N/A</p>
+                  <a href="#" className="btn btn-primary ms-0">
+                    Go somewhere
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="text-center mt-5">
+        <h1 className="d-flex text-align-start m-5">Vehicles</h1>
+
+        {/* Contenedor con scroll horizontal */}
+        <div className="d-flex overflow-auto pb-3">
+          {store.vehicles.map((vehicle, index) => {
+            return (
+              <div
+                key={index}
+                className="card flex-shrink-0 m-3"
+                style={{ width: "17rem" }}
+              >
+                <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
+                <div className="card-body">
+                  <h5 className="card-title">{vehicle.name}</h5>
                   <p className="card-text">Gender: N/A</p>
                   <p className="card-text">Hair color: N/A</p>
                   <p className="card-text">Eyes color: N/A</p>
