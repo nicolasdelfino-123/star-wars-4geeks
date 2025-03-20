@@ -1,32 +1,21 @@
-export const initialStore=()=>{
-  return{
-    message: null,
-    todos: [
-      {
-        id: 1,
-        title: "Make the bed",
-        background: null,
-      },
-      {
-        id: 2,
-        title: "Do my homework",
-        background: null,
-      }
-    ]
-  }
-}
+export const initialStore = () => ({
+  characters: [],
+  planets: [],
+  vehicles: [],
+});
 
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
-    case 'add_task':
+  switch (action.type) {
+    case "GET_CHARACTERS":
+      return { ...store, characters: action.payload || [] }; // ✅ Asegura que siempre sea un array
 
-      const { id,  color } = action.payload
+    case "GET_PLANETS":
+      return { ...store, planets: action.payload || [] };
 
-      return {
-        ...store,
-        todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
-      };
+    case "GET_VEHICLES":
+      return { ...store, vehicles: action.payload || [] };
+
     default:
-      throw Error('Unknown action.');
-  }    
+      return store; // ✅ Devuelve el estado actual en lugar de lanzar un error
+  }
 }
