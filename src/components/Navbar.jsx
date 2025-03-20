@@ -7,15 +7,15 @@ export const Navbar = () => {
         <Link to="/">
           <span className="navbar-brand mb-0 h1">Star Wars</span>
         </Link>
-        <Link to="/">
-          <span>Characteres</span>
-        </Link>
-        <Link to="/">
+        <a href="#characters">
+          <span>Characters</span>
+        </a>
+        <a href="#planets">
           <span>Planets</span>
-        </Link>
-        <Link to="/">
+        </a>
+        <a href="#vehicles">
           <span>Vehicles</span>
-        </Link>
+        </a>
 
         <div className="ml-auto">
           <Link to="/demo">

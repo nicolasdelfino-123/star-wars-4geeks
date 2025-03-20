@@ -75,7 +75,7 @@ export const Home = () => {
 
   return (
     <>
-      <div className="text-center mt-5">
+      <div id="characters" className="text-center mt-5">
         <h1 className="d-flex text-align-start m-5">Characters</h1>
 
         {/* Contenedor con scroll horizontal */}
@@ -103,7 +103,7 @@ export const Home = () => {
         </div>
       </div>
 
-      <div className="text-center mt-5">
+      <div id="planets" className="text-center mt-5">
         <h1 className="d-flex text-align-start m-5">Planets</h1>
 
         {/* Contenedor con scroll horizontal */}
@@ -118,9 +118,8 @@ export const Home = () => {
                 <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
                 <div className="card-body">
                   <h5 className="card-title">{planet.name}</h5>
-                  <p className="card-text">Gender: N/A</p>
-                  <p className="card-text">Hair color: N/A</p>
-                  <p className="card-text">Eyes color: N/A</p>
+                  <p className="card-text">Population: N/A</p>
+                  <p className="card-text">Terrain: N/A</p>
                   <a href="#" className="btn btn-primary ms-0">
                     Go somewhere
                   </a>
@@ -131,7 +130,7 @@ export const Home = () => {
         </div>
       </div>
 
-      <div className="text-center mt-5">
+      <div id="vehicles" className="text-center mt-5">
         <h1 className="d-flex text-align-start m-5">Vehicles</h1>
 
         {/* Contenedor con scroll horizontal */}

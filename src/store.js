@@ -2,6 +2,7 @@ export const initialStore = () => ({
   characters: [],
   planets: [],
   vehicles: [],
+  favoritos: [],
 });
 
 export default function storeReducer(store, action = {}) {
