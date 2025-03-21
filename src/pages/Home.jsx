@@ -88,13 +88,16 @@ export const Home = () => {
                 style={{ width: "17rem" }}
               >
                 <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
-                <div className="card-body">
+                <div className="card-body text-start">
                   <h5 className="card-title">{char.name}</h5>
                   <p className="card-text">Gender: N/A</p>
                   <p className="card-text">Hair color: N/A</p>
                   <p className="card-text">Eyes color: N/A</p>
-                  <a href="#" className="btn btn-primary ms-0">
-                    Go somewhere
+                  <a href="#" className="btn btn-primary">
+                    Learn More
+                  </a>
+                  <a href="#" className="btn btn-primary corazon">
+                    <i class="fa-regular fa-heart"></i>
                   </a>
                 </div>
               </div>
@@ -116,12 +119,15 @@ export const Home = () => {
                 style={{ width: "17rem" }}
               >
                 <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
-                <div className="card-body">
+                <div className="card-body text-start">
                   <h5 className="card-title">{planet.name}</h5>
                   <p className="card-text">Population: N/A</p>
                   <p className="card-text">Terrain: N/A</p>
                   <a href="#" className="btn btn-primary ms-0">
-                    Go somewhere
+                    Learn More
+                  </a>
+                  <a href="#" className="btn btn-primary corazon">
+                    <i class="fa-regular fa-heart"></i>
                   </a>
                 </div>
               </div>
@@ -143,13 +149,16 @@ export const Home = () => {
                 style={{ width: "17rem" }}
               >
                 <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
-                <div className="card-body">
+                <div className="card-body text-start">
                   <h5 className="card-title">{vehicle.name}</h5>
                   <p className="card-text">Gender: N/A</p>
                   <p className="card-text">Hair color: N/A</p>
                   <p className="card-text">Eyes color: N/A</p>
                   <a href="#" className="btn btn-primary ms-0">
-                    Go somewhere
+                    Learn More
+                  </a>
+                  <a href="#" className="btn btn-primary corazon">
+                    <i class="fa-regular fa-heart"></i>
                   </a>
                 </div>
               </div>
@@ -170,7 +179,7 @@ export const Home = () => {
             <p className="card-text">Some quick example</p>
             <p className="card-text">Some quick example</p>
             <a href="#" className="btn btn-primary ms-0">
-              Go somewhere
+              Learn More
             </a>
           </div>
         </div>
@@ -185,7 +194,7 @@ export const Home = () => {
             <p className="card-text">Some quick example</p>
             <p className="card-text">Some quick example</p>
             <a href="#" className="btn btn-primary ms-0">
-              Go somewhere
+              Learn More
             </a>
           </div>
         </div>
