@@ -1,12 +1,71 @@
 import { useEffect } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
   console.log("estado global", store);
+  const navigate = useNavigate();
 
-  //hacer fetch de personajes al cargar el componente
+  const handlerVehicle = async (url) => {
+    console.log("!esta es la url de vehicles", url);
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("error al obtener planetas", response);
+      }
+      const data = await response.json();
+
+      dispatch({
+        type: "VEHICLE_DETAIL",
+        payload: data.result.properties,
+      });
+      navigate("./vehicleDetail");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handlerPlanet = async (url) => {
+    console.log("!esta es la url de planets", url);
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("error al obtener planetas", response);
+      }
+      const data = await response.json();
+
+      dispatch({
+        type: "PLANET_DETAIL",
+        payload: data.result.properties,
+      });
+      navigate("./planetDetail");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handlerDetail = async (url) => {
+    console.log("esta es la url", url);
+    try {
+      const response = await fetch(url);
+      if (!response.message == "ok") {
+        throw new Error("error en pedido", response.statusText);
+      }
+
+      const data = await response.json();
+
+      dispatch({
+        type: "CHARACTER_DETAIL",
+        payload: data.result.properties,
+      });
+
+      navigate("./characterDetail");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     async function getCharacter() {
@@ -20,9 +79,9 @@ export const Home = () => {
 
         dispatch({
           type: "GET_CHARACTERS",
-          payload: data.results.map((character) => ({
-            name: character.name, // Accedemos directamente a 'name' de cada objeto en results
-          })),
+          payload: data.results,
+
+          // Accedemos directamente a 'name' de cada objeto en results
         });
       } catch (error) {
         console.log("errorazo", error);
@@ -41,9 +100,7 @@ export const Home = () => {
 
         dispatch({
           type: "GET_PLANETS",
-          payload: data.results.map((planet) => ({
-            name: planet.name, // Accedemos directamente a 'name' de cada objeto en results
-          })),
+          payload: data.results,
         });
       } catch (error) {
         console.log("errorazo", error);
@@ -55,17 +112,16 @@ export const Home = () => {
       try {
         const response = await fetch(`https://www.swapi.tech/api/vehicles/`);
         if (!response.ok) {
-          throw new Error("error mal planetas, solucionar");
+          throw new Error("error mal vehicles, solucionar");
         }
         const data = await response.json();
         console.log("esta es la data", data);
 
         dispatch({
           type: "GET_VEHICLES",
-          payload: data.results.map((vehicles) => ({
-            name: vehicles.name, // Accedemos directamente a 'name' de cada objeto en results
-          })),
+          payload: data.results,
         });
+        console.log("esto viene de la api", store.characters);
       } catch (error) {
         console.log("errorazo", error);
       }
@@ -90,14 +146,16 @@ export const Home = () => {
                 <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
                 <div className="card-body text-start">
                   <h5 className="card-title">{char.name}</h5>
-                  <p className="card-text">Gender: N/A</p>
-                  <p className="card-text">Hair color: N/A</p>
-                  <p className="card-text">Eyes color: N/A</p>
-                  <a href="#" className="btn btn-primary">
+
+                  <button
+                    href="#"
+                    onClick={() => handlerDetail(char.url)}
+                    className="btn btn-primary"
+                  >
                     Learn More
-                  </a>
+                  </button>
                   <a href="#" className="btn btn-primary corazon">
-                    <i class="fa-regular fa-heart"></i>
+                    <i className="fa-regular fa-heart"></i>
                   </a>
                 </div>
               </div>
@@ -121,13 +179,16 @@ export const Home = () => {
                 <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
                 <div className="card-body text-start">
                   <h5 className="card-title">{planet.name}</h5>
-                  <p className="card-text">Population: N/A</p>
-                  <p className="card-text">Terrain: N/A</p>
-                  <a href="#" className="btn btn-primary ms-0">
+
+                  <a
+                    href="#"
+                    onClick={() => handlerPlanet(planet.url)}
+                    className="btn btn-primary ms-0"
+                  >
                     Learn More
                   </a>
                   <a href="#" className="btn btn-primary corazon">
-                    <i class="fa-regular fa-heart"></i>
+                    <i className="fa-regular fa-heart"></i>
                   </a>
                 </div>
               </div>
@@ -150,15 +211,17 @@ export const Home = () => {
               >
                 <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
                 <div className="card-body text-start">
-                  <h5 className="card-title">{vehicle.name}</h5>
-                  <p className="card-text">Gender: N/A</p>
-                  <p className="card-text">Hair color: N/A</p>
-                  <p className="card-text">Eyes color: N/A</p>
-                  <a href="#" className="btn btn-primary ms-0">
+                  <h5 className="card-tiStle">{vehicle.name}</h5>
+
+                  <a
+                    href="#"
+                    onClick={() => handlerVehicle(vehicle.url)}
+                    className="btn btn-primary ms-0"
+                  >
                     Learn More
                   </a>
                   <a href="#" className="btn btn-primary corazon">
-                    <i class="fa-regular fa-heart"></i>
+                    <i className="fa-regular fa-heart"></i>
                   </a>
                 </div>
               </div>
