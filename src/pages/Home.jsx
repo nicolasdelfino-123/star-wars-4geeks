@@ -1,12 +1,25 @@
 import { useEffect } from "react";
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
   console.log("estado global", store);
   const navigate = useNavigate();
+
+  const location = useLocation();
+
+  useEffect(() => {
+    // Si existe un estado con la sección, hacemos scroll al elemento con ese ID
+    if (location.state?.section) {
+      const sectionId = location.state.section;
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" }); // Hacemos scroll suave
+      }
+    }
+  }, [location]);
 
   const handlerVehicle = async (url) => {
     console.log("!esta es la url de vehicles", url);

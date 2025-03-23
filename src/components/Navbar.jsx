@@ -7,15 +7,16 @@ export const Navbar = () => {
         <Link to="/">
           <span className="navbar-brand mb-0 h1">Star Wars</span>
         </Link>
-        <a href="#characters">
+        {/* Usamos 'state' para enviar el id de la sección */}
+        <Link to="/" state={{ section: "characters" }}>
           <span>Characters</span>
-        </a>
-        <a href="#planets">
+        </Link>
+        <Link to="/" state={{ section: "planets" }}>
           <span>Planets</span>
-        </a>
-        <a href="#vehicles">
+        </Link>
+        <Link to="/" state={{ section: "vehicles" }}>
           <span>Vehicles</span>
-        </a>
+        </Link>
 
         <div className="ml-auto">
           <Link to="#">
