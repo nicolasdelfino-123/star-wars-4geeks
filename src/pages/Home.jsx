@@ -142,6 +142,13 @@ export const Home = () => {
     getVehicle();
   }, [dispatch]);
 
+  const handlerLike = (item) => {
+    dispatch({
+      type: "TOGGLE_FAVORITE",
+      payload: item,
+    });
+  };
+
   return (
     <>
       <div id="characters" className="text-center mt-5">
@@ -168,7 +175,15 @@ export const Home = () => {
                     Learn More
                   </button>
                   <a href="#" className="btn btn-primary corazon">
-                    <i className="fa-regular fa-heart"></i>
+                    <i
+                      onClick={() => handlerLike(char)}
+                      className={
+                        store.favorites &&
+                        store.favorites.some((fav) => fav.name === char.name)
+                          ? "fa-solid fa-heart text-danger"
+                          : "fa-regular fa-heart"
+                      }
+                    ></i>
                   </a>
                 </div>
               </div>
@@ -201,7 +216,15 @@ export const Home = () => {
                     Learn More
                   </a>
                   <a href="#" className="btn btn-primary corazon">
-                    <i className="fa-regular fa-heart"></i>
+                    <i
+                      onClick={() => handlerLike(planet)}
+                      className={
+                        store.favorites &&
+                        store.favorites.some((fav) => fav.name === planet.name)
+                          ? "fa-solid fa-heart text-danger"
+                          : "fa-regular fa-heart"
+                      }
+                    ></i>
                   </a>
                 </div>
               </div>
@@ -234,7 +257,15 @@ export const Home = () => {
                     Learn More
                   </a>
                   <a href="#" className="btn btn-primary corazon">
-                    <i className="fa-regular fa-heart"></i>
+                    <i
+                      onClick={() => handlerLike(vehicle)}
+                      className={
+                        store.favorites &&
+                        store.favorites.some((fav) => fav.name === vehicle.name)
+                          ? "fa-solid fa-heart text-danger"
+                          : "fa-regular fa-heart"
+                      }
+                    ></i>
                   </a>
                 </div>
               </div>
@@ -245,37 +276,3 @@ export const Home = () => {
     </>
   );
 };
-/*  <div className="text-center mt-5">
-        <h1 className="d-flex text-align-start m-5">Planets</h1>
-        <div className="card m-5" style={{ width: "18rem" }}>
-          <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">Some quick example</p>
-            <p className="card-text">Some quick example</p>
-            <p className="card-text">Some quick example</p>
-            <a href="#" className="btn btn-primary ms-0">
-              Learn More
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="text-center mt-5">
-        <h1 className="d-flex text-align-start m-5">Vehicles</h1>
-        <div className="card m-5" style={{ width: "18rem" }}>
-          <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">Some quick example</p>
-            <p className="card-text">Some quick example</p>
-            <p className="card-text">Some quick example</p>
-            <a href="#" className="btn btn-primary ms-0">
-              Learn More
-            </a>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
- */
