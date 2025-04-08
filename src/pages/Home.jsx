@@ -248,7 +248,6 @@ export const Home = () => {
                 <img src={rigoImageUrl} className="card-img-top" alt="imagen" />
                 <div className="card-body text-start">
                   <h5 className="card-tiStle">{vehicle.name}</h5>
-
                   <a
                     href="#"
                     onClick={() => handlerVehicle(vehicle.url)}
